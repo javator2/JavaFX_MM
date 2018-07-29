@@ -1,5 +1,6 @@
 package com.sdacademy.javaFX;
 
+import com.sdacademy.javaFX.controler.PersonControler;
 import com.sdacademy.javaFX.model.Person;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -49,11 +50,16 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("/RootView.fxml"));
             layout = (VBox) loader.load();
 
+            Scene scene = new Scene(layout);
+            stage.setScene(scene);
+            stage.show();
+
+            PersonControler controler = loader.getController();
+            controler.setMain(this);
+
         } catch (IOException err) {
             err.printStackTrace();
         }
-        Scene scene = new Scene(layout);
-        stage.setScene(scene);
-        stage.show();
+
     }
 }

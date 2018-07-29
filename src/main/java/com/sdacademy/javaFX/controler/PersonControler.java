@@ -1,5 +1,6 @@
 package com.sdacademy.javaFX.controler;
 
+import com.sdacademy.javaFX.Main;
 import com.sdacademy.javaFX.model.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,6 +8,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class PersonControler {
+
+    private Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+        personTable.setItems(main.getPersonList());
+    }
 
     @FXML
     private TableView<Person> personTable;
@@ -33,5 +41,7 @@ public class PersonControler {
         nameCol.setCellValueFactory(cell -> cell.getValue().nameProperty());
         lastnameCol.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
     }
+
+
 
 }
