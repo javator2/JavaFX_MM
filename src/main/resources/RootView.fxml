@@ -105,7 +105,7 @@
                         <Label layoutX="16.0" layoutY="6.0" text="Employee Details" />
                         <ButtonBar layoutX="16.0" layoutY="319.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="340.0">
                           <buttons>
-                            <Button mnemonicParsing="false" text="New" />
+                            <Button onAction="#handleNewButton" mnemonicParsing="false" text="New" />
                               <Button mnemonicParsing="false" text="Edit" />
                               <Button mnemonicParsing="false" text="Delete" />
                           </buttons>

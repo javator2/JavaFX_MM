@@ -9,9 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.Observable;
+
 
 public class Main extends Application {
 
@@ -54,12 +53,31 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.show();
 
-            PersonControler controler = loader.getController();
-            controler.setMain(this);
+            PersonControler controller = loader.getController();
+            controller.setMain(this);
 
         } catch (IOException err) {
             err.printStackTrace();
         }
 
+    }
+
+    public void loadPersonEdit() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/PersonEdit.fxml"));
+            VBox window = (VBox) loader.load();
+
+            Stage editStage = new Stage();
+            editStage.setTitle("Edit Person Data here");
+            Scene scene = new Scene(window);
+            editStage.setScene(scene);
+            editStage.show();
+
+
+
+        } catch (IOException err) {
+            err.printStackTrace();
+        }
     }
 }
