@@ -40,6 +40,7 @@ public class PersonControler {
     private Button newButton;
     @FXML
     public void handleNewButton(){
+
        this.main.loadPersonEdit();
     }
 
