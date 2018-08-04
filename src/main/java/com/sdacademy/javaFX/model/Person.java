@@ -12,6 +12,30 @@ public class Person {
     private StringProperty postalCode;
     private StringProperty telephone;
 
+    public void setName(String name) {
+        this.name.set(name);
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname.set(lastname);
+    }
+
+    public void setStreet(String street) {
+        this.street.set(street);
+    }
+
+    public void setCity(String city) {
+        this.city.set(city);
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode.set(postalCode);
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone.set(telephone);
+    }
+
     public Person(String name, String lastname) {
         this.name = new SimpleStringProperty(name);
         this.lastname = new SimpleStringProperty(lastname);
@@ -34,6 +58,7 @@ public class Person {
     }
 
     public String getStreet() {
+
         return street.get();
     }
 
@@ -42,6 +67,7 @@ public class Person {
     }
 
     public String getCity() {
+
         return city.get();
     }
 

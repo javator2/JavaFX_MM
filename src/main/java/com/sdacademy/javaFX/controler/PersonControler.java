@@ -3,10 +3,8 @@ package com.sdacademy.javaFX.controler;
 import com.sdacademy.javaFX.Main;
 import com.sdacademy.javaFX.model.Person;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+
 
 public class PersonControler {
 
@@ -38,23 +36,69 @@ public class PersonControler {
 
     @FXML
     private Button newButton;
-    @FXML
-    public void handleNewButton(){
 
-       this.main.loadPersonEdit();
+    @FXML
+    public void handleNewButton() {
+
+        this.main.loadNewPerson();
     }
 
     @FXML
     private Button editButton;
+
+    @FXML
+    public void handleEditButton() {
+
+        Person selectPerson = personTable.getSelectionModel().getSelectedItem();
+        if (selectPerson != null) {
+            System.out.println(selectPerson.getName() + " " + selectPerson.getLastname());
+            this.main.loadPersonEdit(selectPerson);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(main.getStage());
+            alert.setTitle("WARNING");
+            alert.setContentText("No Person was selected!");
+            alert.showAndWait();
+        }
+    }
+
     @FXML
     private Button deleteButton;
+
+    @FXML
+    public void handleDeleteButton() {
+        int index = personTable.getSelectionModel().getSelectedIndex();
+        System.out.println(index + 1);
+        Person selectPerson = personTable.getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + selectPerson.getName() + " "
+                + selectPerson.getLastname() + "?", ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.YES) {
+            if (index >= 0) {
+                personTable.getItems().remove(index);
+            }
+        }
+    }
+
+    @FXML
+    public void viewPersonInfoOnLable(Person person) {
+
+        nameLabel.setText(person.getName());
+        lastnameLabel.setText(person.getLastname());
+    }
 
 
     @FXML
     public void initialize() {
         nameCol.setCellValueFactory(cell -> cell.getValue().nameProperty());
         lastnameCol.setCellValueFactory(cell -> cell.getValue().lastnameProperty());
+
+        personTable.getSelectionModel().selectedItemProperty().addListener((observable, oldField, newField) -> viewPersonInfoOnLable(newField));
     }
+
+
 
 
 }
