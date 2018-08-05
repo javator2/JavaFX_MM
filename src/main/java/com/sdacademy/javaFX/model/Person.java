@@ -12,7 +12,10 @@ public class Person  {
     private StringProperty postalCode;
     private StringProperty telephone;
 
-
+    public Person(StringProperty name, StringProperty lastname) {
+        this.name = name;
+        this.lastname = lastname;
+    }
 
     public void setName(String name) {
         this.name.set(name);

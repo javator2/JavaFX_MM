@@ -22,14 +22,13 @@ import java.util.List;
 
 public class Main extends Application {
 
-    public Stage getStage() {
-        return stage;
-    }
+    public Stage getStage() {return stage;}
 
     private Stage stage;
     private VBox layout;
 
     private ObservableList<Person> personList = FXCollections.observableArrayList();
+    private List<PersonInString> firstList = new ArrayList<>();
 
     public Main() throws IOException {
 
@@ -41,31 +40,32 @@ public class Main extends Application {
 //        personList.add(new Person("Zachary", "Czarnecki"));
 
 
+
         ObjectMapper mapper = new ObjectMapper();
         File filename = new File("MySuperList.json");
         filename.createNewFile();
+        if (filename.length() > 0) {
         PersonInString[] readorders = mapper.readValue(new File("MySuperList.json"), PersonInString[].class);
-        for (PersonInString p : readorders) {
-            System.out.println(p.getName());
-            personList.add(new Person(p.getName(),p.getLastname(),p.getStreet(),p.getCity(),p.getPostalCode(),p.getTelephone()));
-
-        }
-
+            for (PersonInString p : readorders) {
+                System.out.println(p.getName());
+                personList.add(new Person(p.getName(), p.getLastname(), p.getStreet(), p.getCity(), p.getPostalCode(), p.getTelephone()));
+            }
+        } else {
+            //firstList.add(new PersonInString("Marek", "Testowy"));
+            mapper.writeValue(filename, firstList);
+            System.out.println(firstList.get(0));
+            }
     }
 
-    public ObservableList<Person> getPersonList() {
-        return personList;
-    }
+    public ObservableList<Person> getPersonList() {return personList;}
 
     public static void main(String[] args) {
         launch();
-
     }
-
 
     public void start(Stage primaryStage) throws Exception {
         this.stage = primaryStage;
-        this.stage.setTitle("My first App in JavaFX");
+        this.stage.setTitle("Personal List of some people");
         loadView();
     }
 
@@ -81,13 +81,10 @@ public class Main extends Application {
 
             PersonControler controller = loader.getController();
             controller.setMain(this);
-
-
         } catch (IOException err) {
             err.printStackTrace();
         }
-
-    }
+        }
 
     public void loadNewPerson() {
         try {
