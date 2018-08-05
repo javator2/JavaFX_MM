@@ -5,6 +5,8 @@ import com.sdacademy.javaFX.model.Person;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+
 
 public class PersonControler {
 
@@ -39,12 +41,11 @@ public class PersonControler {
 
     @FXML
     public void handleNewButton() {
-
-        this.main.loadNewPerson();
+       this.main.loadNewPerson();
     }
 
-    @FXML
-    private Button editButton;
+//    @FXML
+//    private Button editButton;
 
     @FXML
     public void handleEditButton() {
@@ -60,6 +61,14 @@ public class PersonControler {
             alert.setContentText("No Person was selected!");
             alert.showAndWait();
         }
+    }
+
+//    @FXML
+//    private Button save;
+
+    @FXML
+    public void handleSaveButton() throws IOException {
+        main.save();
     }
 
     @FXML
@@ -87,6 +96,10 @@ public class PersonControler {
 
         nameLabel.setText(person.getName());
         lastnameLabel.setText(person.getLastname());
+        streetLable.setText(person.getStreet());
+        cityLable.setText(person.getCity());
+        postalCodeLable.setText(person.getPostalCode());
+        telephoneLable.setText(person.getTelephone());
     }
 
 

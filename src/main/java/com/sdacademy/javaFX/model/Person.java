@@ -3,7 +3,7 @@ package com.sdacademy.javaFX.model;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Person {
+public class Person  {
 
     private StringProperty name;
     private StringProperty lastname;
@@ -11,6 +11,8 @@ public class Person {
     private StringProperty city;
     private StringProperty postalCode;
     private StringProperty telephone;
+
+
 
     public void setName(String name) {
         this.name.set(name);
@@ -36,9 +38,13 @@ public class Person {
         this.telephone.set(telephone);
     }
 
-    public Person(String name, String lastname) {
+    public Person(String name, String lastname, String street, String city, String postalCode, String telephone) {
         this.name = new SimpleStringProperty(name);
         this.lastname = new SimpleStringProperty(lastname);
+        this.street = new SimpleStringProperty(street);
+        this.city = new SimpleStringProperty(city);
+        this.postalCode = new SimpleStringProperty(postalCode);
+        this.telephone = new SimpleStringProperty(telephone);
     }
 
     public String getName() {
@@ -57,19 +63,13 @@ public class Person {
         return lastname;
     }
 
-    public String getStreet() {
-
-        return street.get();
-    }
+    public String getStreet() { return street.get(); }
 
     public StringProperty streetProperty() {
         return street;
     }
 
-    public String getCity() {
-
-        return city.get();
-    }
+    public String getCity() { return city.get(); }
 
     public StringProperty cityProperty() {
         return city;
@@ -90,4 +90,5 @@ public class Person {
     public StringProperty telephoneProperty() {
         return telephone;
     }
+
 }

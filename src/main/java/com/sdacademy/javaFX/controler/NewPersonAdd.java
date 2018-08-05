@@ -3,21 +3,18 @@ package com.sdacademy.javaFX.controler;
 import com.sdacademy.javaFX.Main;
 import com.sdacademy.javaFX.model.Person;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class NewPersonAdd {
     private Main main;
-
     public void setMain(Main main) {
         this.main = main;
-        personTable.setItems(main.getPersonList());
+//        personTable.setItems(main.getPersonList());
     }
 
-    @FXML
-    private TableView<Person> personTable;
+//    @FXML
+//    private TableView<Person> personTable;
 
     @FXML
     private TextField name;
@@ -40,34 +37,37 @@ public class NewPersonAdd {
     private Person person;
     private Stage stage;
 
-    public void setStageForNewPerson(Stage stage) {
-        this.stage = stage;
+    public void setStageForNewPerson(Stage s) {
+        this.stage = s;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
-        name.setText(person.getName());
-        lastname.setText(person.getLastname());
+    public void setPerson(Person p) {
+        this.person = p;
+        if( p != null ) {
+            name.setText(person.getName());
+            lastname.setText(person.getLastname());
+            street.setText(person.getStreet());
+            city.setText(person.getCity());
+            postalCode.setText(person.getPostalCode());
+            telephoneNumber.setText(person.getTelephone());
+        }
     }
 
-    @FXML
-    private Button anuluj;
-
-    @FXML
-    private Button save;
-
-    @FXML
-    public void handleSaveButton(Person person) {
-    }
-
-    public void handleAddPerson() {
-        main.addPerson(person);
-        System.out.println("zamykam");
+    public void handleAddPersonSave() {
+        person.setName(name.getText());
+        person.setLastname(lastname.getText());
+        person.setStreet(street.getText());
+        person.setCity(city.getText());
+        person.setPostalCode(postalCode.getText());
+        person.setTelephone(telephoneNumber.getText());
+        main.getPersonList().add(person);
+        System.out.println("Łał, ale fajnie że coś zmieniłeś. Zapisuję!");
         stage.close();
+
     }
 
     public void close() {
-        System.out.println("zamykam");
+        System.out.println("Nie chcesz dodać nikogo nowego? Napewno? .......... NAPEWNO?!?!?!");
         stage.close();
     }
 }

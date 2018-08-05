@@ -3,7 +3,6 @@ package com.sdacademy.javaFX.controler;
 
 import com.sdacademy.javaFX.model.Person;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -43,27 +42,27 @@ public class PersonDetails {
         this.person = person;
         name.setText(person.getName());
         lastname.setText(person.getLastname());
+        street.setText(person.getStreet());
+        city.setText(person.getCity());
+        postalCode.setText(person.getPostalCode());
+        telephoneNumber.setText(person.getTelephone());
     }
 
-    @FXML
-    private Button anuluj;
 
-    @FXML
-    private Button save;
-
-    @FXML
-    public void handleSaveButton(Person person) {
-    }
 
     public void handleOK() {
         person.setName(name.getText());
         person.setLastname(lastname.getText());
-        System.out.println("zamykam");
+        person.setStreet(street.getText());
+        person.setCity(city.getText());
+        person.setPostalCode(postalCode.getText());
+        person.setTelephone(telephoneNumber.getText());
+        System.out.println("Łał, ale fajnie że coś zmieniłeś. Zapisuję!");
         stage.close();
     }
 
     public void close() {
-        System.out.println("zamykam");
+        System.out.println("Nic nie zmieniasz to zamykam =[");
         stage.close();
     }
 }

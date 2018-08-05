@@ -72,7 +72,7 @@
     <ButtonBar prefHeight="40.0" prefWidth="496.0">
       <buttons>
         <Button onAction="#handleOK" mnemonicParsing="false" text="Zapisz" />
-        <Button fx:id="anuluj" onAction="#close" mnemonicParsing="false" text="Anuluj" />
+        <Button onAction="#close" mnemonicParsing="false" text="Anuluj" />
       </buttons>
       <VBox.margin>
         <Insets right="30.0" />
